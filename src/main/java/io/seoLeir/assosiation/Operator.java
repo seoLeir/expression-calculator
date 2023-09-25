@@ -1,4 +1,4 @@
-package io.seoLeir;
+package io.seoLeir.assosiation;
 
 public enum Operator {
     ADDITION("+", Associativity.LEFT, 0),
@@ -7,9 +7,9 @@ public enum Operator {
     MULTIPLICATION("*", Associativity.LEFT, 5),
     MODULUS("%", Associativity.LEFT, 5),
     POWER("^", Associativity.RIGHT, 10);
-    final Associativity associativity;
+    public final Associativity associativity;
     final int precedence;
-    final String symbol;
+    public final String symbol;
 
     Operator(String symbol, Associativity associativity, int precedence) {
         this.symbol = symbol;

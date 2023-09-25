@@ -1,9 +1,11 @@
-package io.seoLeir;
+package io.seoLeir.util;
+
+import io.seoLeir.assosiation.Operator;
 
 import java.util.*;
 
-import static io.seoLeir.Associativity.LEFT;
-import static io.seoLeir.Associativity.RIGHT;
+import static io.seoLeir.assosiation.Associativity.LEFT;
+import static io.seoLeir.assosiation.Associativity.RIGHT;
 
 public class ShuntingYard {
 
@@ -64,6 +66,10 @@ public class ShuntingYard {
                 stack.push(stack.pop() + stack.pop());
             }else if (token.equals("^")){
                 stack.push((int) Math.pow(stack.pop(), stack.pop()));
+            }else if (token.equals("%")){
+                int a = stack.pop();
+                int b = stack.pop();
+                stack.push(a % b);
             }
             else if (token.equals("*")) {
                 stack.push(stack.pop() * stack.pop());
