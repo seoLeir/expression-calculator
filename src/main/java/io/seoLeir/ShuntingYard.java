@@ -6,12 +6,14 @@ import static io.seoLeir.Associativity.LEFT;
 import static io.seoLeir.Associativity.RIGHT;
 
 public class ShuntingYard {
+
+    private ShuntingYard() {
+        throw new UnsupportedOperationException();
+    }
+
     final static Map<String, Operator> OPS = new HashMap<>();
 
     static {
-        // We build a map with all the existing Operators by iterating over the existing Enum
-        // and filling up the map with:
-        // <K,V> = <Character, Operator(Character, Associativity, Precedence)>
         for (Operator operator : Operator.values()) {
             OPS.put(operator.symbol, operator);
         }
@@ -24,8 +26,8 @@ public class ShuntingYard {
         for (String token : tokens) {
             if (OPS.containsKey(token)) {
                 while (!stack.isEmpty() && OPS.containsKey(stack.peek())) {
-                    Operator cOp = OPS.get(token); // Current operator
-                    Operator lOp = OPS.get(stack.peek()); // Top operator from the stack
+                    Operator cOp = OPS.get(token);
+                    Operator lOp = OPS.get(stack.peek());
                     if ((cOp.associativity == LEFT && cOp.comparePrecedence(lOp) <= 0) ||
                             (cOp.associativity == RIGHT && cOp.comparePrecedence(lOp) < 0)) {
                         output.add(stack.pop());
@@ -60,6 +62,8 @@ public class ShuntingYard {
         for (String token : tokens) {
             if (token.equals("+")) {
                 stack.push(stack.pop() + stack.pop());
+            }else if (token.equals("^")){
+                stack.push((int) Math.pow(stack.pop(), stack.pop()));
             }
             else if (token.equals("*")) {
                 stack.push(stack.pop() * stack.pop());
