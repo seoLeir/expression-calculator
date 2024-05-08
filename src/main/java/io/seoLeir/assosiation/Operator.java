@@ -1,23 +1,50 @@
 package io.seoLeir.assosiation;
 
-public enum Operator {
-    ADDITION("+", Associativity.LEFT, 0),
-    SUBTRACTION("-", Associativity.LEFT, 0),
-    DIVISION("/", Associativity.LEFT, 5),
-    MULTIPLICATION("*", Associativity.LEFT, 5),
-    MODULUS("%", Associativity.LEFT, 5),
-    POWER("^", Associativity.RIGHT, 10);
-    public final Associativity associativity;
-    final int precedence;
-    public final String symbol;
+import java.util.Arrays;
 
-    Operator(String symbol, Associativity associativity, int precedence) {
+public enum Operator {
+    ADDITION("+", 0, Associativity.LEFT),
+
+    SUBTRACTION("-", 0, Associativity.LEFT),
+
+    DIVISION("/", 5, Associativity.LEFT),
+
+    MULTIPLICATION("*", 5, Associativity.LEFT),
+
+    LEFT_PARENTHESIS("(", 15, null),
+
+    RIGHT_PARENTHESIS(")", 15, null),
+
+    POWER("^", 10, Associativity.RIGHT);
+
+    private final int precedence;
+
+    private final String symbol;
+
+    private Associativity associativity;
+
+    Operator(String symbol, int precedence, Associativity associativity) {
         this.symbol = symbol;
-        this.associativity = associativity;
         this.precedence = precedence;
+        this.associativity = associativity;
     }
 
-    public int comparePrecedence(Operator operator) {
-        return this.precedence - operator.precedence;
+    public int getPrecedence() {
+        return precedence;
+    }
+
+    public Associativity getAssociativity() {
+        return associativity;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public static Operator getFunctionOperation(String operation) {
+        return Arrays.stream(Operator.values())
+                .filter(operator -> operator.getSymbol().equals(operation))
+                .findFirst()
+                .orElseThrow(UnsupportedOperationException::new);
     }
 }
