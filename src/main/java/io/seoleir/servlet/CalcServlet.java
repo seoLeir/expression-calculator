@@ -1,6 +1,4 @@
-package io.seoLeir.servlet;
-
-import io.seoLeir.util.ShuntingYard;
+package io.seoleir.servlet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,10 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
-import static io.seoLeir.util.ShuntingYard.*;
+import static io.seoleir.util.ShuntingYard.*;
 
 @WebServlet("/calc")
 public class CalcServlet extends HttpServlet {

@@ -1,4 +1,4 @@
-package io.seoLeir.model;
+package io.seoleir.model;
 
 import java.util.Arrays;
 
