@@ -1,4 +1,4 @@
-package io.seoLeir.assosiation;
+package io.seoLeir.model;
 
 import java.util.Arrays;
 

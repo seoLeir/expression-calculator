@@ -1,12 +1,12 @@
 package io.seoLeir.util;
 
-import io.seoLeir.assosiation.Associativity;
-import io.seoLeir.assosiation.Operator;
+import io.seoLeir.model.Associativity;
+import io.seoLeir.model.Operator;
 
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static io.seoLeir.assosiation.Operator.*;
+import static io.seoLeir.model.Operator.*;
 
 public final class ShuntingYard {
 
